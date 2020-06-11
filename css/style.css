@@ -1,0 +1,296 @@
+* {
+    box-sizing: border-box;
+}
+
+/* FONTS */
+
+@font-face {
+    font-family: impact;
+    src: url(../fonts/Impact/impact.ttf);
+}
+
+/* BASE */
+
+html{
+   font-family: Montserrat;
+}
+
+body{
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 1.6rem;
+    background-color:#ffffff;
+    cursor: pointer;
+     box-shadow: -1px -1px 4px 4px #ff7f00;
+     transition: 0.3s;
+}
+
+button:hover{
+    box-shadow: -1px -1px 4px 4px black;
+}
+
+button:active{
+    box-shadow: -1px -1px 4px 4px white;
+}
+
+input{
+    border: none;
+    border-radius: 0.75rem;
+    height: 3.75rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: -1px -1px 4px 4px #ff7f00;
+    transition: 0.3s;
+}
+
+input:hover{
+    box-shadow: -1px -1px 4px 4px black;
+}
+
+/* HEADER */
+
+header {
+    height: 66px;
+    padding: 50px;
+    background-color: #ff7f00;
+    color: white;
+}
+
+.logo {
+    font-family: impact;
+    font-size: 1.875rem;
+    text-transform: uppercase;
+    letter-spacing: 3.6px;
+}
+
+.main-nav {
+    font-size: 1.2rem;
+}
+
+.main-nav li:not(:last-child) {
+    /* border-inline-end: solid #8a8a8a 1px; */
+    margin-inline-end: 20px;
+}
+
+.main-nav li {
+    transition: .4s;
+}
+
+.main-nav li:hover{
+    transform: scale(1.3);
+    text-shadow: 1px 2px 3px #666;
+}
+ 
+.main-nav li a {
+    margin-inline-end: 20px;
+}
+
+
+/* MAIN */
+
+.meme-container {
+    width:100%;
+    margin: 0 auto;
+    background-color: #e3e3e3;
+    padding: 30px;
+}
+
+.canvas-container{
+    background-color: rgb(216, 216, 216);
+    width: 500px;
+    min-width: 500px;
+    height: 500px;
+    box-shadow: -1px -1px 4px 4px white;
+}
+
+
+
+.editor-container{
+    max-width: 500px;
+    min-height: 330px;
+    font-family: Montserrat;
+}
+
+
+.gallery-container {
+
+    width: 100%;
+
+    height: 100%;
+
+    padding: 50px;
+}
+
+.memes-container {
+    padding: 50px;
+}
+
+.memes-container img {
+    cursor: default;
+}
+
+/* grid */
+
+.grid {
+    display: grid;
+  }
+
+.grid-container {
+  
+    grid-gap:20px;   
+
+    /* auto-fill */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    /* grid-auto-rows */
+    grid-auto-rows: 250px;
+
+    background-color: #e3e3e3;
+}
+
+.grid-container img {
+    object-fit: cover;
+    box-shadow: -1px -1px 4px 4px white;
+}
+
+.grid-container img:hover {
+    opacity: 50%;
+    box-shadow: -1px -1px 4px 4px black;
+}
+
+/* MEME */
+
+.line-input {
+    width: 370px;
+}
+
+.switch-lines{
+    transform: rotate(-90deg)
+}
+
+.save-download {
+    align-self: center;
+    background-color: #ff7f00;
+    width: 150px;
+    font-size: 1.25rem;
+    color: white;
+    height: 60px;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 20px;
+    box-shadow: -1px -1px 4px 4px white;
+    transition: 0.3s;
+}
+
+.save-download:hover{
+    box-shadow: -1px -1px 4px 4px black;
+    font-size: 1.5rem;
+    text-shadow: 1px 2px 3px black;
+    padding-top: 15px;
+}
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+    height: 207px;
+    background-color: #ff7f00;
+    color: white;
+    text-align: center;
+}
+
+.buffer{
+    height: 70px;
+}
+
+.coffe-rights {
+    font-family: Montserrat - Thin;
+    font-size: 1.2rem;
+}
+
+/* HELPERS */
+
+/* layout */
+
+.main-container {
+    width: 100%;
+}
+
+
+.display-none {
+    display:none;
+}
+
+/* flex */
+
+.flex {
+    display: flex;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.space-around{
+    justify-content: space-around;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+/* lists */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* BREAK POINTS */
+
+@media (max-width: 1024px) {
+    .meme-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .editor-container{ 
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .line-input {
+        width: 330px;
+    }
+
+    input{
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+}

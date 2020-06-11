@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="onInit()">
+
+    <header class="flex space-between align-center">
+        <div class="logo">Memegen</div>
+        <ul class="main-nav flex clean-list">
+            <li>
+                <a class="gallery" onclick="shiftDisplayToGallery()" title="Back to gallery" href="#">Gallery</a>
+            </li>
+            <li>
+                <a class="memes" onclick="renderSavedMemes()" title="Saved Memes" href="#">Memes</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+        </ul>
+    </header>
+
+    <main class="main-container">
+
+        <div class="meme-container space-around display-none">
+
+            <div class="canvas-container">
+                <canvas id="my_canvas"></canvas>
+            </div>
+            <div class="editor-container flex flex-col space-between">
+                <input class="line-input" onkeyup="onUpdateSelectedTxt(this)" type="text" name="text"></input>
+                <div class="switch-add-remove-height-btns flex space-between">
+                    <button onclick="onChangeLineHeight(-5)" title="Move Line Up"><i
+                            class="fa fa-arrow-up"></i></button>
+                    <button onclick="onChangeLineHeight(5)" title="Move Line Up"><i
+                            class="fa fa-arrow-down"></i></button>
+                    <button class="switch-lines" title="Switch-Lines" onclick="onSwitchLine()"><i
+                            class="fa fa-exchange"></i></button>
+                    <button title="Remove-line" onclick="onRemoveLine()"><i class="fa fa-trash"></i></button>
+                    <button title="Add-line" onclick="onAddLine()"><i class="fa fa-plus"></i></button>
+                </div>
+
+                <div class="align-and-size-btns flex space-between">
+                    <button onclick="onChangeFontSize(1)" title="Increase font size">A+</button>
+                    <button onclick="onChangeFontSize(-1)" title="Decrease font size">A-</button>
+                    <button title="align left" onclick="onAlignLineText('right')"><i
+                            class="fa fa-align-left"></i></button>
+                    <button title="align center" onclick="onAlignLineText('center')"><i
+                            class="fa fa-align-center"></i></button>
+                    <button title="align right" onclick="onAlignLineText('left')"><i
+                            class="fa fa-align-right"></i></button>
+                </div>
+
+
+                <div class="color-font-family-btns flex space-between">
+                    <input list="fontFamily" value="Impact" onchange="onChangeFontFamily(this.value)">
+                    <input class="color-input" type="color" name="textColor" onchange="onChangeTxtColor(this.value)"
+                        title="Change text color"></input>
+                </div>
+                <div class="flex space-between">
+                    <a class="save-download" href="#" onclick="onDownloadMeme(this)" download="">Download</a>
+                    <a class="save-download" href="#" onclick="onSaveMeme(this)">Save</a>
+                </div>
+
+                <datalist id="fontFamily">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="TimesNewRoman">TimesNewRoman</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Times">Times</option>
+                    <option value="Geneva">Geneva</option>
+                    <option value="Optima">Optima</option>
+                    <option value="Garamond">Garamond</option>
+                    <option value="Didot">Didot</option>
+                    <option value="Copperplate">Copperplate</option>
+                    <option value="Perpetua">Perpetua</option>
+                    <option value="Monaco">Monaco</option>
+                </datalist>
+
+            </div>
+        </div>
+
+        <div class="gallery-container grid grid-container">
+        </div>
+
+        <div class="memes-container grid grid-container">
+        </div>
+
+    </main>
+
+
+    <footer>
+        <div class="buffer"></div>
+        <div class="logo footer-logo">Memegen</div>
+        <h5 class="coffe-rights">all rights reserved 2019</h5>
+    </footer>
+
+    <script src="js/util.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>
