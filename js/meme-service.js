@@ -27,98 +27,58 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['disney', 'movie', 'woodi', 'baz'] }
 ];
 
+var gNextId
+
 var gMeme = {
-    selectedImgId: 0,
-    selectedLineIdx: 0,
-    lines: [{
-        id:0,
-        txt: 'TYPE SOMETHING',
-        size: 40,
+    selectedImgId: 0
+}
+
+// reset gMeme to the default of 2 lines
+function resetMeme() {
+    gMeme.selectedLineIdx = 0
+    gMeme.lines = [_createLine(0, 70), _createLine(1, 450)]
+    gNextId = gMeme.lines.length
+}
+
+// create the line object
+function  _createLine (id = gNextId++, y=250) {
+    return {
+        id,
+        y,
+        x:250,
+        txt:'TYPE SOMETHING',
+        size: 30,
         align: 'center',
         color: 'white',
         stroke: 'orange',
-        font: 'impact',
-        x: 250,
-        y: 50
-    },
-
-    {
-        id:1,
-        txt: 'TYPE SOMETHING',
-        size: 40,
-        align: 'center',
-        color: 'white',
-        stroke: 'black',
-        font: 'impact',
-        x: 250,
-        y: 450
-    },
-
-    ]
+        font: 'impact'
+    }
 }
 
-var gNextId = gMeme.lines.length
 
 // updating initial x and y pos by canvas dimensions
-function  updateInitLinesCords(canvasWidth, canvasHeight) {
-    gMeme.lines[0].x = canvasWidth/2
-    gMeme.lines[0].y = canvasHeight / 10
-    gMeme.lines[1].x = canvasWidth /2
-    gMeme.lines[1].y = canvasHeight -  (canvasHeight / 10)
-}
-
-// initializing gMeme to the default of 2 lines
-
-function initGmeme(elImg) {
-    gMeme = {
-        selectedImgId: elImg.id,
-        selectedLineIdx: 0,
-        lines: [{
-            id:0,
-            txt: 'TYPE SOMETHING',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            stroke: 'orange',
-            font: 'impact',
-            x: 250,
-            y: 50
-        },
-    
-        {
-            id:1,
-            txt: 'TYPE SOMETHING',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            stroke: 'black',
-            font: 'impact',
-            x: 250,
-            y: 450
-        },
-    
-        ]
-    }
-
-    gNextId = gMeme.lines.length
-}
+// function  updateInitLinesCords(canvasWidth, canvasHeight) {
+//     gMeme.lines[0].x = canvasWidth/2
+//     gMeme.lines[0].y = canvasHeight / 10
+//     gMeme.lines[1].x = canvasWidth /2
+//     gMeme.lines[1].y = canvasHeight -  (canvasHeight / 10)
+// }
 
 // update txt content
 function updateSelectedTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
-// updagte the selected line by user
-// function updateSelectedLine(inputId) {
-//     gMeme.selectedLineIdx = +inputId;
-// }
 
 // switch between the edited text line
 function switchLine() {
-    gMeme.lines[gMeme.selectedLineIdx].stroke = 'black'
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
-    gMeme.lines[gMeme.selectedLineIdx].stroke = 'orange'
 }
+
+function isSelectedLine (line) {
+    return (gMeme.selectedLineIdx===line.id)
+}
+
 
 // updated the selected img for canvas by user choise from gallery
 function updateSelectedImg (elImgId) {
@@ -148,6 +108,11 @@ function changeTxtColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
+// changing stroke color - outline color fo the font
+function changeStrokeColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].stroke = color
+}
+
 // update the font-family 
 function changeFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font
@@ -171,34 +136,17 @@ function removeLine() {
     } else if ((!gMeme.selectedLineIdx) && (gMeme.lines.length!==1)) {
         gMeme.selectedLineIdx = (gMeme.lines.length -1)
     } else {gMeme.selectedLineIdx --}
-    if (gMeme.lines.length){ gMeme.lines[gMeme.selectedLineIdx].stroke = 'orange'}
     gNextId = gMeme.lines.length
 }
 
 // get txt from input, use create line function and push it to gmeme
 
 function addLine() {
-    if (gMeme.lines.length > 0) {gMeme.lines[gMeme.selectedLineIdx].stroke = 'black'}
     let line = _createLine ()
-    console.log(line)
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = line.id
 }
 
-// create the line object
-function  _createLine () {
-    return {
-        id: gNextId++,
-        txt: 'TYPE SOMETHING',
-        size: 40,
-        align: 'center',
-        color: 'white',
-        stroke: 'orange',
-        font: 'impact',
-        x: 250,
-        y: 250
-    }
-}
 
 // push the saved meme to the saved memes array and call other function to save it to the storage
 function saveMeme (savedMeme) {
@@ -210,6 +158,7 @@ function saveMeme (savedMeme) {
 function _saveMemesToStorage() {
     saveToStorage(KEY, gSavedMemes)
 }
+
 
 
 
