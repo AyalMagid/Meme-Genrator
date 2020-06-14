@@ -14,7 +14,7 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d');
     gMeme = getMeme()
     renderGallery()
-    resizeCanvas();
+    resizeCanvas(); 
 }
 
 // rendering the imgs gallery
@@ -24,7 +24,6 @@ function renderGallery() {
         return `<img onclick="onImageClick(this)" id="${img.id}" src="${img.url}" alt="${img.keywords}"> `
     })
     document.querySelector('.gallery-container').innerHTML = strHtmls.join('')
-
 }
 
 function renderSavedMemes() {
@@ -98,6 +97,7 @@ function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
+    getCanvasDimensions (gElCanvas.width, gElCanvas.height)
 }
 
 // clear the canvas completely 
@@ -105,10 +105,6 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-// update the model with the right line
-// function onUpdateSelectedLine(elInput) {
-//     updateSelectedLine(elInput.id)
-// }
 
 // update the text on the meme
 function onUpdateSelectedTxt(elTxt) {

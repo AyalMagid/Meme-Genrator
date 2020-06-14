@@ -17,13 +17,13 @@
         <div class="logo">Memegen</div>
         <ul class="main-nav flex clean-list">
             <li>
-                <a class="gallery visibility" onclick="shiftToGalleryDisplay()" title="Back to gallery" href="#">Gallery</a>
+                <a class="gallery display" onclick="shiftToGalleryDisplay()" title="Back to gallery" href="#">Gallery</a>
             </li>
             <li>
-                <a class="memes visibility" onclick="renderSavedMemes()" title="Saved Memes" href="#">Memes</a>
+                <a class="memes display" onclick="renderSavedMemes()" title="Saved Memes" href="#">Memes</a>
             </li>
             <li>
-                <a class="about visibility" href="#">About</a>
+                <a class="about display" href="#">About</a>
             </li>
         </ul>
         <button class="btn-menu display-none" onclick="onToggleMenu()" >☰</button>
@@ -36,6 +36,7 @@
             <div class="canvas-container">
                 <canvas id="my_canvas"></canvas>
             </div>
+
             <div class="editor-container flex flex-col space-between">
                 <input class="line-input" onkeyup="onUpdateSelectedTxt(this)" type="text" name="text"></input>
                 <div class="switch-add-remove-height-btns flex space-between">

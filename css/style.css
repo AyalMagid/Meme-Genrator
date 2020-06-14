@@ -159,7 +159,6 @@ header {
 .canvas-container{
     background-color: rgb(216, 216, 216);
     width: 500px;
-    min-width: 500px;
     height: 500px;
     box-shadow: -1px -1px 4px 4px white;
 }
@@ -352,14 +351,13 @@ footer {
         top: 0;
     }
 
-.visibility {
-    visibility:hidden;
-}
+    .display {
+        display:none;
+    }
 
- .menu-open .visibility{
-     visibility: visible; 
- }
-
+    .menu-open .display{
+        display: block; 
+    }
 
     .menu-open  .main-nav li{
         padding: 50px;
@@ -371,7 +369,7 @@ footer {
     }
 
     .menu-open  .main-nav li:not(:last-child) {
-    border-inline-end: solid #8a8a8a 0px;
+        border-inline-end: solid #8a8a8a 0px;
        margin-inline-end: 0px; 
     } 
 
@@ -397,4 +395,10 @@ footer {
 
 }
 
+@media (max-width: 600px) {
+    .canvas-container{
+        width: 300px;
+        height: 300px;
+    }
+}
 

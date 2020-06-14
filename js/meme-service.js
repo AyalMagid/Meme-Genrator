@@ -29,6 +29,10 @@ var gImgs = [
 
 var gNextId
 
+var gCanvasWidth 
+
+var gCanvasHeight
+
 var gMeme = {
     selectedImgId: 0
 }
@@ -36,16 +40,16 @@ var gMeme = {
 // reset gMeme to the default of 2 lines
 function resetMeme() {
     gMeme.selectedLineIdx = 0
-    gMeme.lines = [_createLine(0, 70), _createLine(1, 450)]
+    gMeme.lines = [_createLine(0, (gCanvasHeight/8)), _createLine(1, (gCanvasHeight -  (gCanvasHeight / 8)))]
     gNextId = gMeme.lines.length
 }
 
 // create the line object
-function  _createLine (id = gNextId++, y=250) {
+function  _createLine (id = gNextId++, y=gCanvasHeight/2) {
     return {
         id,
         y,
-        x:250,
+        x:gCanvasWidth/2,
         txt:'TYPE SOMETHING',
         size: 30,
         align: 'center',
@@ -56,13 +60,11 @@ function  _createLine (id = gNextId++, y=250) {
 }
 
 
-// updating initial x and y pos by canvas dimensions
-// function  updateInitLinesCords(canvasWidth, canvasHeight) {
-//     gMeme.lines[0].x = canvasWidth/2
-//     gMeme.lines[0].y = canvasHeight / 10
-//     gMeme.lines[1].x = canvasWidth /2
-//     gMeme.lines[1].y = canvasHeight -  (canvasHeight / 10)
-// }
+// get the canvas dimensions 
+function  getCanvasDimensions (canvasWidth, canvasHeight) {
+    gCanvasWidth = canvasWidth
+    gCanvasHeight = canvasHeight
+}
 
 // update txt content
 function updateSelectedTxt(txt) {
@@ -123,6 +125,7 @@ function alignLineText(direction) {
     gMeme.lines[gMeme.selectedLineIdx].align = direction
 }
 
+
 // remove line - making sure its ok to remove the last ones as well and set the selected idx (might be negative when there are no lines at all but go back to 0 normal with first line created)
 
 function removeLine() {
@@ -146,7 +149,6 @@ function addLine() {
     gMeme.lines.push(line)
     gMeme.selectedLineIdx = line.id
 }
-
 
 // push the saved meme to the saved memes array and call other function to save it to the storage
 function saveMeme (savedMeme) {
